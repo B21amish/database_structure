@@ -41,6 +41,10 @@ None
 
 ## changelog
 
+### v0.0.2
+
+- Update table for file_storage -> File.
+
 ### v0.0.1
 
 - initial implementation.
