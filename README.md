@@ -1,43 +1,39 @@
-# square_database
+# database_structure
 
 ## about
 
-database layer for my personal server.
+database structure layer for my personal server.
 
 ## installation
 
-> pip install square_database
+> pip install database_structure
 
 ## usage
 
 ### to add a new database
 
-- add package in databases package with database name and run main.py file with config variable CREATE_SCHEMA = True.
+- create a package with package name as database name.
 
 ### to add a new schema
 
-- add package in databases/database_name package with schema name and run main.py file with config variable
-  CREATE_SCHEMA = True.
+- add package in database_name package with schema name as package name.
 
 ### to add a new table
 
-- create databases/database_name/schema_name/tables.py file if not already created.
-- create class corresponding to your new table add in databases/database_name/schema_name/tables.py file and run main.py
-  file with config variable CREATE_SCHEMA = True
+- create /database_name/schema_name/tables.py file if not already created.
+- create class corresponding to your new table add in /database_name/schema_name/tables.py file.
 
 ### to add default data in table
 
 - append row objects containing your default data to the data_to_insert list inside the
-  databases/database_name/schema_name/tables.py file and run main.py
-  file with config variable CREATE_SCHEMA = True
+  /database_name/schema_name/tables.py file.
 
-**do not forget to add new database_names, schema_names and/or table_names to pydantic_models/pydantic_models.py enums
-to make it accessible through api calls.**
+**do not forget to add new database_names, schema_names and/or table_names to main.py enums to make it accessible
+through api calls.**
 
 ## configs
 
-1. square_database\data\config.ini (can be created using square_database\data\config.example.ini)
-2. square_logger\data\config.ini
+None
 
 ## env
 
@@ -45,10 +41,12 @@ to make it accessible through api calls.**
 
 ## changelog
 
+### v0.0.2
+
+- Update table for file_storage -> File.
+
 ### v0.0.1
 
 - initial implementation.
-- known bugs
-    - creating engines everytime on fastapi route call is creating idle sessions.
 
 ## Feedback is appreciated. Thank you!
