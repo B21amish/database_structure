@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
-package_name = "database_structure"
+package_name = "lapa_database_structure"
 
 setup(
     name=package_name,
-    version="0.0.1",
+    version="0.0.3",
     packages=find_packages(),
     package_data={
         package_name: [],
@@ -17,7 +17,7 @@ setup(
     description="database layer for my personal server.",
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
-    url=f"https://github.com/thepmsquare/{package_name}",
+    url=f"https://github.com/B21amish/{package_name}",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",

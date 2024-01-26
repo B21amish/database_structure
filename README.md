@@ -1,4 +1,4 @@
-# database_structure
+# lapa_database_structure
 
 ## about
 
@@ -6,7 +6,7 @@ database structure layer for my personal server.
 
 ## installation
 
-> pip install database_structure
+> pip install lapa_database_structure
 
 ## usage
 
@@ -40,6 +40,10 @@ None
 - python>=3.12.0
 
 ## changelog
+
+### v0.0.3
+
+- Changed package name to lapa_database_structure.
 
 ### v0.0.2
 
