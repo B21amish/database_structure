@@ -4,7 +4,7 @@ package_name = "database_structure"
 
 setup(
     name=package_name,
-    version="0.0.1",
+    version="0.0.3",
     packages=find_packages(),
     package_data={
         package_name: [],
