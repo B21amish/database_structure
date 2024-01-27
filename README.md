@@ -41,6 +41,14 @@ None
 
 ## changelog
 
+### v.0.0.4
+
+- authentication database added with the below tables
+    - user
+    - user_validation_status
+    - user_registration
+    - hashing_algorithm
+
 ### v0.0.3
 
 - Changed package name to lapa_database_structure.
