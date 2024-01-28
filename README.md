@@ -41,13 +41,19 @@ None
 
 ## changelog
 
+### v0.0.5
+
+- file_storage -> public -> File
+  - change file_extension to file_content_type.
+  - file_system_relative_path default change from "." to "".
+
 ### v.0.0.4
 
 - authentication database added with the below tables
-    - user
-    - user_validation_status
-    - user_registration
-    - hashing_algorithm
+  - user
+  - user_validation_status
+  - user_registration
+  - hashing_algorithm
 
 ### v0.0.3
 
