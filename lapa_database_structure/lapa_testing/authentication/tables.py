@@ -1,7 +1,7 @@
-from sqlalchemy import Column, Integer, ForeignKey, String
+from sqlalchemy import Column, Integer, ForeignKey, String, MetaData
 from sqlalchemy.orm import declarative_base
 
-Base = declarative_base()
+Base = declarative_base(metadata=MetaData(schema="authentication"))
 
 data_to_insert = []
 

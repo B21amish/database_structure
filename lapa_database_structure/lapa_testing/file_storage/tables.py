@@ -1,8 +1,8 @@
-from sqlalchemy import Boolean, Column, DateTime, Integer, String, text
+from sqlalchemy import Boolean, Column, DateTime, Integer, String, text, MetaData
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.sql import func
 
-Base = declarative_base()
+Base = declarative_base(metadata=MetaData(schema="file_storage"))
 
 data_to_insert = []
 

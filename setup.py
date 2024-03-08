@@ -12,9 +12,9 @@ setup(
     install_requires=[
         "sqlalchemy>=2.0.23",
     ],
-    author="Amish Palkar, thePmSquare, Lav Sharma",
+    author="Amish Palkar, thePmSquare, Lav Sharma,Aaditya Sangishetty",
     author_email="amishpalkar302001@gmail.com, thepmsquare@gmail.com, lavsharma2016@gmail.com, "
-                 "adityasehtty35@gmail.coom",
+                 "adityasehtty35@gmail.com",
     description="database layer for my personal server.",
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",

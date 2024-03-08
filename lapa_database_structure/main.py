@@ -3,7 +3,7 @@ from enum import Enum
 
 class DatabasesEnum(str, Enum):
     lapa = "lapa"
-    testing = "testing"
+    lapa_testing = "lapa_testing"
 
 class SchemaEnum(str, Enum):
     public = "public"

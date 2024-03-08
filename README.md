@@ -31,6 +31,8 @@ database structure layer for my personal server.
 **do not forget to add new database_names, schema_names and/or table_names to main.py enums to make it accessible
 through api calls.**
 
+**do not forget to clone changes to all testing database.**
+
 ## configs
 
 None
@@ -44,8 +46,8 @@ None
 ### v0.0.6
 
 - changed db structure
-  - removed game db
-  - added testing db which is clone of lapa
+- removed game db
+- added testing db which is clone of lapa
 
 ### v0.0.5
 
