@@ -4,7 +4,7 @@ package_name = "lapa_database_structure"
 
 setup(
     name=package_name,
-    version="0.0.5",
+    version="0.0.6",
     packages=find_packages(),
     package_data={
         package_name: [],
@@ -13,7 +13,8 @@ setup(
         "sqlalchemy>=2.0.23",
     ],
     author="Amish Palkar, thePmSquare, Lav Sharma",
-    author_email="amishpalkar302001@gmail.com, thepmsquare@gmail.com, lavsharma2016@gmail.com",
+    author_email="amishpalkar302001@gmail.com, thepmsquare@gmail.com, lavsharma2016@gmail.com, "
+                 "adityasehtty35@gmail.coom",
     description="database layer for my personal server.",
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",

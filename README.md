@@ -41,6 +41,12 @@ None
 
 ## changelog
 
+### v0.0.6
+
+- changed db structure
+  - removed game db
+  - added testing db which is clone of lapa
+
 ### v0.0.5
 
 - file_storage -> public -> File
