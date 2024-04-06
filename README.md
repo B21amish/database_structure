@@ -43,6 +43,11 @@ None
 
 ## changelog
 
+### v0.0.7
+
+-  Overhauled authentication schema, 
+- introducing new tables: User, UsernameAuthentication, UserProfile, AuthenticationType, UserAccountStatus, UserLog, and UserLogStatus.
+
 ### v0.0.6
 
 - changed db structure
