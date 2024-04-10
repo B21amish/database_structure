@@ -1,5 +1,22 @@
-from sqlalchemy import Column, Integer, String, MetaData, DateTime
+from sqlalchemy import (
+    Column,
+    Integer,
+    MetaData,
+    DateTime,
+    Enum,
+    text,
+    String,
+    ForeignKey,
+)
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base
+from sqlalchemy.sql import func
+
+from lapa_database_structure.lapa.authentication.enums import (
+    UserAccountStatusEnum,
+    AuthenticationTypeEnum,
+    UserLogEvent,
+)
 
 Base = declarative_base(metadata=MetaData(schema="authentication"))
 
@@ -7,72 +24,93 @@ data_to_insert = []
 
 
 class User(Base):
-    __tablename__ = 'user'
+    __tablename__ = "user"
 
-    u_id = Column(Integer, primary_key=True, nullable=False)
-    uas_id = Column(Integer, nullable=True)
-    u_unique_identifier = Column(Integer, unique=True, nullable=True)
+    user_id = Column(
+        UUID,
+        primary_key=True,
+        nullable=False,
+        unique=True,
+        default=text("gen_random_uuid()"),
+    )
+    user_account_status = Column(
+        Enum(UserAccountStatusEnum),
+        nullable=False,
+        default=text(UserAccountStatusEnum.ACTIVE.value),
+    )
 
 
 class AuthenticationUsername(Base):
-    __tablename__ = 'authentication_username'
+    __tablename__ = "authentication_username"
 
-    au_id = Column(Integer, primary_key=True, nullable=False)
-    u_id = Column(Integer, nullable=True)
-    au_username = Column(String(255), unique=True, nullable=False)
-    au_hashed_password = Column(String(255), nullable=False)
-    au_password_salt = Column(String(255), nullable=False)
-    au_access_token = Column(String(255), nullable=False)
-    au_refresh_token = Column(String(255), nullable=False)
+    authentication_username_id = Column(
+        Integer, primary_key=True, nullable=False, unique=True, autoincrement=True
+    )
+    user_id = Column(
+        UUID,
+        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=False,
+    )
+    authentication_username_username = Column(
+        String,
+        nullable=False,
+        unique=True,
+    )
+    authentication_username_hashed_password = Column(String, nullable=False)
+    authentication_username_password_salt = Column(String, nullable=False, unique=True)
+    authentication_username_access_token = Column(String, nullable=False)
+    authentication_username_refresh_token = Column(String, nullable=False)
 
 
 class UserProfile(Base):
-    __tablename__ = 'user_profile'
+    __tablename__ = "user_profile"
 
-    up_id = Column(Integer, primary_key=True, nullable=False)
-    u_id = Column(Integer,  nullable=True)
-
-
-class UserAuthenticationRelationship(Base):
-    __tablename__ = 'user_authentication_relationship'
-
-    uar_id = Column(Integer, primary_key=True, nullable=False)
-    u_id = Column(Integer, nullable=False)
-    urt_id = Column(Integer, nullable=False)
-
-
-class AuthenticationType(Base):
-    __tablename__ = 'authentication_type'
-
-    at_id = Column(Integer, primary_key=True, nullable=False)
-    at_name = Column(String(45), nullable=True, unique=True)
+    user_profile_id = Column(
+        Integer,
+        primary_key=True,
+        nullable=False,
+        unique=True,
+        autoincrement=True,
+    )
+    user_id = Column(
+        UUID,
+        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=False,
+    )
 
 
-class UserAccountStatus(Base):
-    __tablename__ = 'user_account_status'
+class UserAuthentication(Base):
+    __tablename__ = "user_authentication"
 
-    uas_id = Column(Integer, primary_key=True, nullable=False)
-    uas_name = Column(String(45), nullable=True, unique=True)
+    user_authentication_id = Column(
+        Integer,
+        primary_key=True,
+        nullable=False,
+        unique=True,
+        autoincrement=True,
+    )
+    user_id = Column(
+        UUID,
+        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=False,
+    )
+    user_authentication_authentication_type = Column(
+        Enum(AuthenticationTypeEnum),
+        nullable=False,
+        default=AuthenticationTypeEnum.USERNAME.value,
+    )
 
 
 class UserLog(Base):
-    __tablename__ = 'user_log'
+    __tablename__ = "user_log"
 
-    ul_id = Column(Integer, primary_key=True, nullable=False)
-    u_id = Column(Integer, nullable=False)
-    ul_datetime = Column(DateTime, nullable=True)
-    uls_id = Column(Integer, nullable=False)
-
-
-class UserLogStatus(Base):
-    __tablename__ = 'user_log_status'
-
-    uls_id = Column(Integer, primary_key=True, nullable=False)
-    uls_name = Column(String(45), nullable=True, unique=True)
-
-
-    # data_to_insert.extend([
-    #     UserValidationStatus(status_description="pending"),
-    #     UserValidationStatus(status_description="verified")
-    # ])
-
+    user_log_id = Column(Integer, primary_key=True, nullable=False)
+    user_id = Column(
+        UUID,
+        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=False,
+    )
+    user_log_datetime = Column(
+        DateTime(timezone=True), nullable=False, server_default=func.now()
+    )
+    user_log_event = Column(Enum(UserLogEvent), nullable=False)
