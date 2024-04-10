@@ -2,14 +2,14 @@ from enum import Enum
 
 
 class UserAccountStatusEnum(Enum):
-    ACTIVE = "active"
-    DELETED = "deleted"
+    ACTIVE = "ACTIVE"
+    DELETED = "DELETED"
 
 
 class AuthenticationTypeEnum(Enum):
-    USERNAME = "username"
+    USERNAME = "USERNAME"
 
 
-class UserLogEvent(Enum):
-    CREATED = "created"
-    DELETED = "deleted"
+class UserLogEventEnum(Enum):
+    CREATED = "CREATED"
+    DELETED = "DELETED"

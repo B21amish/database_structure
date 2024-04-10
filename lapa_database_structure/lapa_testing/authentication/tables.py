@@ -15,10 +15,13 @@ from sqlalchemy.sql import func
 from lapa_database_structure.lapa.authentication.enums import (
     UserAccountStatusEnum,
     AuthenticationTypeEnum,
-    UserLogEvent,
+    UserLogEventEnum,
 )
 
-Base = declarative_base(metadata=MetaData(schema="authentication"))
+local_string_schema_name = "authentication"
+
+
+Base = declarative_base(metadata=MetaData(schema=local_string_schema_name))
 
 data_to_insert = []
 
@@ -31,12 +34,12 @@ class User(Base):
         primary_key=True,
         nullable=False,
         unique=True,
-        default=text("gen_random_uuid()"),
+        server_default=text("gen_random_uuid()"),
     )
     user_account_status = Column(
-        Enum(UserAccountStatusEnum),
+        Enum(UserAccountStatusEnum, schema=local_string_schema_name),
         nullable=False,
-        default=text(UserAccountStatusEnum.ACTIVE.value),
+        server_default=UserAccountStatusEnum.ACTIVE.value,
     )
 
 
@@ -95,9 +98,9 @@ class UserAuthentication(Base):
         nullable=False,
     )
     user_authentication_authentication_type = Column(
-        Enum(AuthenticationTypeEnum),
+        Enum(AuthenticationTypeEnum, schema=local_string_schema_name),
         nullable=False,
-        default=AuthenticationTypeEnum.USERNAME.value,
+        server_default=AuthenticationTypeEnum.USERNAME.value,
     )
 
 
@@ -113,4 +116,6 @@ class UserLog(Base):
     user_log_datetime = Column(
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )
-    user_log_event = Column(Enum(UserLogEvent), nullable=False)
+    user_log_event = Column(
+        Enum(UserLogEventEnum, schema=local_string_schema_name), nullable=False
+    )
