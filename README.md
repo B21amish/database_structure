@@ -43,6 +43,11 @@ None
 
 ## changelog
 
+### v0.0.9
+
+- rename authentication_username_hashed_access_token and authentication_username_hashed_refresh_token.
+- update enum in main.py.
+
 ### v0.0.8
 
 - Overhauled authentication schema, again.

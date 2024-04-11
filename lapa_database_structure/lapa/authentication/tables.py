@@ -61,8 +61,8 @@ class AuthenticationUsername(Base):
     )
     authentication_username_hashed_password = Column(String, nullable=False)
     authentication_username_password_salt = Column(String, nullable=False, unique=True)
-    authentication_username_access_token = Column(String, nullable=False)
-    authentication_username_refresh_token = Column(String, nullable=False)
+    authentication_username_hashed_access_token = Column(String, nullable=False)
+    authentication_username_hashed_refresh_token = Column(String, nullable=False)
 
 
 class UserProfile(Base):
