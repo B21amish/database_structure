@@ -18,6 +18,8 @@ from lapa_database_structure.lapa.authentication.enums import (
     UserLogEventEnum,
 )
 
+local_string_database_name = "lapa_testing"
+
 local_string_schema_name = "authentication"
 
 
@@ -60,9 +62,9 @@ class AuthenticationUsername(Base):
         unique=True,
     )
     authentication_username_hashed_password = Column(String, nullable=False)
-    authentication_username_password_salt = Column(String, nullable=False, unique=True)
     authentication_username_hashed_access_token = Column(String, nullable=False)
     authentication_username_hashed_refresh_token = Column(String, nullable=False)
+    authentication_username_salt = Column(String, nullable=False, unique=True)
 
 
 class UserProfile(Base):

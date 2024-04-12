@@ -43,6 +43,12 @@ None
 
 ## changelog
 
+### v0.0.10
+
+- renamed authentication_username_salt.
+- added local_string_database_name in each database.
+- removed main.py file and its enums.
+
 ### v0.0.9
 
 - rename authentication_username_hashed_access_token and authentication_username_hashed_refresh_token.
@@ -70,7 +76,7 @@ None
     - change file_extension to file_content_type.
     - file_system_relative_path default change from "." to "".
 
-### v.0.0.4
+### v0.0.4
 
 - authentication database added with the below tables
     - user

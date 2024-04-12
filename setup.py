@@ -4,7 +4,7 @@ package_name = "lapa_database_structure"
 
 setup(
     name=package_name,
-    version="0.0.9",
+    version="0.0.10",
     packages=find_packages(),
     package_data={
         package_name: [],
@@ -14,7 +14,7 @@ setup(
     ],
     author="Amish Palkar, thePmSquare, Lav Sharma, Aaditya Sangishetty",
     author_email="amishpalkar302001@gmail.com, thepmsquare@gmail.com, lavsharma2016@gmail.com, "
-    "adityasehtty35@gmail.com",
+    "adityashetty35@gmail.com",
     description="database layer for my personal server.",
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",

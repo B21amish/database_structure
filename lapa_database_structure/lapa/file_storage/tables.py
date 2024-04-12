@@ -2,7 +2,12 @@ from sqlalchemy import Boolean, Column, DateTime, Integer, String, text, MetaDat
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.sql import func
 
-Base = declarative_base(metadata=MetaData(schema="file_storage"))
+local_string_database_name = "lapa"
+
+local_string_schema_name = "file_storage"
+
+
+Base = declarative_base(metadata=MetaData(schema=local_string_schema_name))
 
 data_to_insert = []
 
