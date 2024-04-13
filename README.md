@@ -43,6 +43,10 @@ None
 
 ## changelog
 
+### v0.0.11
+
+- removed salt authentication_username_salt column
+
 ### v0.0.10
 
 - renamed authentication_username_salt.
