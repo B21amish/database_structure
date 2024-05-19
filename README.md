@@ -43,6 +43,12 @@ None
 
 ## changelog
 
+### v0.0.12
+
+- removed UserAuthentication 
+- renamed user_authentication -> credential
+- new table device and user_device_session
+
 ### v0.0.11
 
 - removed salt authentication_username_salt column

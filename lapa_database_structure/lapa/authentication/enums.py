@@ -6,10 +6,6 @@ class UserAccountStatusEnum(Enum):
     DELETED = "DELETED"
 
 
-class AuthenticationTypeEnum(Enum):
-    USERNAME = "USERNAME"
-
-
 class UserLogEventEnum(Enum):
     CREATED = "CREATED"
     DELETED = "DELETED"

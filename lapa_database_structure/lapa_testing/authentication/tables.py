@@ -14,7 +14,6 @@ from sqlalchemy.sql import func
 
 from lapa_database_structure.lapa.authentication.enums import (
     UserAccountStatusEnum,
-    AuthenticationTypeEnum,
     UserLogEventEnum,
 )
 
@@ -45,10 +44,10 @@ class User(Base):
     )
 
 
-class AuthenticationUsername(Base):
-    __tablename__ = "authentication_username"
+class Credentials(Base):
+    __tablename__ = "credentials"
 
-    authentication_username_id = Column(
+    credential_id = Column(
         Integer, primary_key=True, nullable=False, unique=True, autoincrement=True
     )
     user_id = Column(
@@ -56,14 +55,12 @@ class AuthenticationUsername(Base):
         ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False,
     )
-    authentication_username_username = Column(
+    username = Column(
         String,
         nullable=False,
         unique=True,
     )
-    authentication_username_hashed_password = Column(String, nullable=False)
-    authentication_username_hashed_access_token = Column(String, nullable=False)
-    authentication_username_hashed_refresh_token = Column(String, nullable=False)
+    hashed_password = Column(String, nullable=False)
 
 
 class UserProfile(Base):
@@ -83,28 +80,6 @@ class UserProfile(Base):
     )
 
 
-class UserAuthentication(Base):
-    __tablename__ = "user_authentication"
-
-    user_authentication_id = Column(
-        Integer,
-        primary_key=True,
-        nullable=False,
-        unique=True,
-        autoincrement=True,
-    )
-    user_id = Column(
-        UUID,
-        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
-        nullable=False,
-    )
-    user_authentication_authentication_type = Column(
-        Enum(AuthenticationTypeEnum, schema=local_string_schema_name),
-        nullable=False,
-        server_default=AuthenticationTypeEnum.USERNAME.value,
-    )
-
-
 class UserLog(Base):
     __tablename__ = "user_log"
 
@@ -120,3 +95,16 @@ class UserLog(Base):
     user_log_event = Column(
         Enum(UserLogEventEnum, schema=local_string_schema_name), nullable=False
     )
+
+
+class Device(Base):
+    __tablename__ = "device"
+    encrypted_mac_address = Column(String, primary_key=True, nullable=False)
+
+
+class UserDeviceSession(Base):
+    __tablename__ = "user_device_session"
+
+    uds_id = Column(Integer, primary_key=True, unique=True, nullable=False)
+    user_id = Column(Integer, nullable=False)
+    hashed_refresh_token = Column(String, nullable=False)

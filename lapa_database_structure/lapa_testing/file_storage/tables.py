@@ -6,6 +6,7 @@ local_string_database_name = "lapa_testing"
 
 local_string_schema_name = "file_storage"
 
+
 Base = declarative_base(metadata=MetaData(schema=local_string_schema_name))
 
 data_to_insert = []
