@@ -43,9 +43,25 @@ None
 
 ## changelog
 
+### v0.0.13
+
+lapa and lapa_testing
+
+- authentication
+    - naming convention changes to tables and columns.
+    - make user_id unique in user_credential table. (1 user can have only 1 username-password)
+    - make user_id unique in user_profile table. (1 user can have only 1 profile)
+    - add auto increment to user_log_id and user_device_session_id. (primary keys)
+    - introduce device_id in device table.
+    - assign foreign key to user_id in user_device_session table.
+    - introduce foreign key device_id to user_device_session table.
+    - make device_encrypted_mac_address unique in device table. (unencrypted mac address is supposed to be unique)
+    - make user_device_session_hashed_refresh_token unique in device table. (plaintext refresh token is supposed to be
+      unique)
+
 ### v0.0.12
 
-- removed UserAuthentication 
+- removed UserAuthentication
 - renamed user_authentication -> credential
 - new table device and user_device_session
 

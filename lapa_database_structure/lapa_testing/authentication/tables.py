@@ -44,23 +44,20 @@ class User(Base):
     )
 
 
-class Credentials(Base):
-    __tablename__ = "credentials"
+class UserCredential(Base):
+    __tablename__ = "user_credential"
 
-    credential_id = Column(
+    user_credential_id = Column(
         Integer, primary_key=True, nullable=False, unique=True, autoincrement=True
     )
     user_id = Column(
         UUID,
         ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False,
-    )
-    username = Column(
-        String,
-        nullable=False,
         unique=True,
     )
-    hashed_password = Column(String, nullable=False)
+    user_credential_username = Column(String, nullable=False, unique=True, index=True)
+    user_credential_hashed_password = Column(String, nullable=False)
 
 
 class UserProfile(Base):
@@ -77,13 +74,16 @@ class UserProfile(Base):
         UUID,
         ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False,
+        unique=True,
     )
 
 
 class UserLog(Base):
     __tablename__ = "user_log"
 
-    user_log_id = Column(Integer, primary_key=True, nullable=False)
+    user_log_id = Column(
+        Integer, primary_key=True, nullable=False, unique=True, autoincrement=True
+    )
     user_id = Column(
         UUID,
         ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
@@ -99,12 +99,34 @@ class UserLog(Base):
 
 class Device(Base):
     __tablename__ = "device"
-    encrypted_mac_address = Column(String, primary_key=True, nullable=False)
+    device_id = Column(
+        Integer, primary_key=True, nullable=False, unique=True, autoincrement=True
+    )
+    device_encrypted_mac_address = Column(
+        String,
+        nullable=False,
+        unique=True,
+    )
 
 
 class UserDeviceSession(Base):
     __tablename__ = "user_device_session"
 
-    uds_id = Column(Integer, primary_key=True, unique=True, nullable=False)
-    user_id = Column(Integer, nullable=False)
-    hashed_refresh_token = Column(String, nullable=False)
+    user_device_session_id = Column(
+        Integer, primary_key=True, unique=True, nullable=False, autoincrement=True
+    )
+    user_id = Column(
+        UUID,
+        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=False,
+    )
+    device_id = Column(
+        Integer,
+        ForeignKey(Device.device_id, ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=False,
+    )
+    user_device_session_hashed_refresh_token = Column(
+        String,
+        nullable=False,
+        unique=True,
+    )
