@@ -109,10 +109,10 @@ class Device(Base):
     )
 
 
-class UserDeviceSession(Base):
-    __tablename__ = "user_device_session"
+class UserSession(Base):
+    __tablename__ = "user_session"
 
-    user_device_session_id = Column(
+    user_session_id = Column(
         Integer, primary_key=True, unique=True, nullable=False, autoincrement=True
     )
     user_id = Column(
@@ -120,13 +120,9 @@ class UserDeviceSession(Base):
         ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False,
     )
-    device_id = Column(
-        Integer,
-        ForeignKey(Device.device_id, ondelete="CASCADE", onupdate="CASCADE"),
-        nullable=False,
-    )
-    user_device_session_hashed_refresh_token = Column(
+    user_session_hashed_refresh_token = Column(
         String,
         nullable=False,
         unique=True,
     )
+    user_session_expiry_time = Column(DateTime(timezone=True), nullable=False)

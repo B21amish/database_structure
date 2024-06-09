@@ -43,6 +43,16 @@ None
 
 ## changelog
 
+### v0.0.14
+
+lapa and lapa_testing
+
+- authentication
+    - remove device table and remove references of device in user_device_session (old name).
+    - add session_expiry_time in user_session table.
+- public
+    - add table for testing.
+
 ### v0.0.13
 
 lapa and lapa_testing

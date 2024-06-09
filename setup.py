@@ -4,7 +4,7 @@ package_name = "lapa_database_structure"
 
 setup(
     name=package_name,
-    version="0.0.13",
+    version="0.0.14",
     packages=find_packages(),
     package_data={
         package_name: [],
