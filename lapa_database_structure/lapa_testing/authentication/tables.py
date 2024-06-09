@@ -120,7 +120,7 @@ class UserSession(Base):
         ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False,
     )
-    user_session_hashed_refresh_token = Column(
+    user_session_refresh_token = Column(
         String,
         nullable=False,
         unique=True,
