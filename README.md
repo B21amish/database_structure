@@ -43,6 +43,13 @@ None
 
 ## changelog
 
+### v0.0.15
+
+lapa and lapa_testing
+
+- authentication
+    - rename user_session_hashed_refresh_token to user_session_refresh_token
+
 ### v0.0.14
 
 lapa and lapa_testing
